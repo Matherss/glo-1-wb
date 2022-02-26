@@ -1,4 +1,4 @@
-const getGoods = () => {
+export const getGoods = () => {
   const links = document.querySelectorAll(".navigation-link");
   const viewAllLink = document.querySelector(".more");
 
@@ -67,4 +67,3 @@ const getGoods = () => {
     renderGoods(JSON.parse(localStorage.getItem("goods")));
   }
 };
-getGoods();

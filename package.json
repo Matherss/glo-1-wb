@@ -1,0 +1,28 @@
+{
+  "name": "wildber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Matherss/glo-1-wb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Matherss/glo-1-wb/issues"
+  },
+  "homepage": "https://github.com/Matherss/glo-1-wb#readme",
+  "devDependencies": {
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "swiper": "^8.0.6"
+  }
+}

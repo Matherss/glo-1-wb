@@ -1,6 +1,6 @@
-const getGoods = () => {
-  const links = document.querySelectorAll(".navigation-link");
-  const viewAllLink = document.querySelector(".more");
+export const search = function () {
+  const input = document.querySelector(".search-block > input");
+  const searchBtn = document.querySelector(".search-block > button");
 
   const renderGoods = (goods) => {
     const goodsContainer = document.querySelector(".long-goods-list");
@@ -26,12 +26,11 @@ const getGoods = () => {
     });
   };
 
-  const getData = (value, category) => {
+  const getData = (value) => {
     fetch("https://db-glo-default-rtdb.firebaseio.com/db.json")
       .then((res) => res.json())
       .then((data) => {
-        const array = category ? data.filter((item) => item[category] === value) : data;
-
+        const array = data.filter((good) => good.name.toLowerCase().includes(value.toLowerCase()));
         localStorage.setItem("goods", JSON.stringify(array));
 
         if (window.location.pathname !== "/goods.html") {
@@ -42,29 +41,11 @@ const getGoods = () => {
       });
   };
 
-  links.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      const linkValue = link.textContent;
-      const category = link.dataset.field;
-
-      getData(linkValue, category);
+  try {
+    searchBtn.addEventListener("click", () => {
+      getData(input.value);
     });
-  });
-
-  if (viewAllLink) {
-    try {
-      viewAllLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        getData();
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  }
-
-  if (localStorage.getItem("goods") && window.location.pathname === "/goods.html") {
-    renderGoods(JSON.parse(localStorage.getItem("goods")));
+  } catch (err) {
+    throw err;
   }
 };
-getGoods();
